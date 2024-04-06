@@ -43,7 +43,7 @@ dag = DAG(
     start_date=days_ago(1),
     default_args=default_args,
     schedule_interval=timedelta(days=1),
-    tags=['example']
+    tags=['poc']
 )
 
 submit = SparkKubernetesOperator(
