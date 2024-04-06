@@ -58,7 +58,7 @@ hello_world_task = BashOperator(
 submit = SparkKubernetesOperator(
     task_id='spark_transform_data',
     namespace='spark-operator',
-    application_file='/repo/spark/spark-pi.yaml',
+    application_file='/spark-pi.yaml',
     kubernetes_conn_id='sparkgke',
     do_xcom_push=True,
 )
