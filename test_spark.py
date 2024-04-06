@@ -49,7 +49,7 @@ dag = DAG(
 submit = SparkKubernetesOperator(
     task_id='spark_transform_data',
     namespace='spark-operator',
-    application_file='spark/spark_pi.yaml',
+    application_file='/spark/spark_pi.yaml',
     kubernetes_conn_id='kubernetes_default',
     do_xcom_push=True,
 )
