@@ -45,6 +45,14 @@ dag = DAG(
     schedule_interval=timedelta(days=1),
     tags=['poc']
 )
+# Define the BashOperator task
+hello_world_task = BashOperator(
+    task_id='hello_world_task',
+    bash_command='python -c "print(\'Hello, world!\')"',
+    dag=dag
+)
+
+# Define the task dependencies
 
 submit = SparkKubernetesOperator(
     task_id='spark_transform_data',
@@ -55,5 +63,5 @@ submit = SparkKubernetesOperator(
 )
 
 
-
+hello_world_task
 submit
