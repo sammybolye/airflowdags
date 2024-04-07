@@ -19,7 +19,7 @@ from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import SparkKu
 from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKubernetesSensor
 from airflow.providers.cncf.kubernetes.hooks.kubernetes import KubernetesHook
 from airflow.utils.dates import days_ago
-k8s_hook = KubernetesHook(conn_id='kubernetes_default')
+k8s_hook = KubernetesHook(conn_id='sparkgke')
 # [END import_module]
 
 # [START default_args]
@@ -59,7 +59,7 @@ submit = SparkKubernetesOperator(
     task_id='spark_transform_data',
     namespace='spark-operator',
     application_file='spark/spark-pi.yaml',
-    #kubernetes_conn_id='sparkgke',
+    kubernetes_conn_id='sparkgke',
     do_xcom_push=True,
 )
 
