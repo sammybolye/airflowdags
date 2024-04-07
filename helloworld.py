@@ -1,13 +1,22 @@
-from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
+from airflow import DAG
+from airflow.operators.bash_operator import BashOperator
+from datetime import datetime
 
-k = KubernetesPodOperator(
-    name="hello-dry-run",
-    image="debian",
-    cmds=["bash", "-cx"],
-    arguments=["echo", "10"],
-    labels={"foo": "bar"},
-    task_id="dry_run_demo",
-    do_xcom_push=True,
+# Define the DAG
+dag = DAG(
+    'hello_world',
+    description='A simple tutorial DAG',
+    schedule_interval=None,
+    start_date=datetime(2023, 3, 22),
+    catchup=False
 )
 
-k.dry_run()
+# Define the BashOperator task
+hello_world_task = BashOperator(
+    task_id='hello_world_task',
+    bash_command='python -c "print(\'Hello, world!\')"',
+    dag=dag
+)
+
+# Define the task dependencies
+hello_world_task
