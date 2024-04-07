@@ -40,11 +40,11 @@ default_args = {
 # [START instantiate_dag]
 
 dag = DAG(
-    'spark_pi',
+    'spark_new',
     start_date=days_ago(1),
     default_args=default_args,
     schedule_interval=timedelta(days=1),
-    tags=['poc']
+    tags=['fix']
 )
 # Define the BashOperator task
 hello_world_task = BashOperator(
